@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+             xmlns:local="clr-namespace:DrillDownMAUIChart"
+             x:Class="DrillDownMAUIChart.MainPage">
+
+    <Grid>
+        <Grid.BindingContext>
+            <local:ViewModel />
+        </Grid.BindingContext>
+        <chart:SfCircularChart Margin="20">
+            <chart:SfCircularChart.Legend>
+                <chart:ChartLegend />
+            </chart:SfCircularChart.Legend>
+            <chart:PieSeries ItemsSource="{Binding PieData}" 
+                             XBindingPath="Type" 
+                             YBindingPath="Value"
+                             ShowDataLabels="True"
+                             PaletteBrushes="{Binding CustomBrushes}">
+                <!--To enable the selection support-->
+                <chart:PieSeries.SelectionBehavior>
+                    <chart:DataPointSelectionBehavior SelectionChanged="OnPieSeriesSelectionChanged"/>
+                </chart:PieSeries.SelectionBehavior>
+            </chart:PieSeries>
+        </chart:SfCircularChart>
+    </Grid>
+
+</ContentPage>
